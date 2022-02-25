@@ -17,6 +17,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [CheckBuildProjectConfigurations]
 [ShutdownDotNetAfterServerBuild]
+[UnsetVisualStudioEnvironmentVariables]
 // ReSharper disable once CheckNamespace
 class Build : NukeBuild
 {
@@ -78,7 +79,6 @@ class Build : NukeBuild
         .Executes(() =>
         {
             DotNetBuild(s => s
-                .SetFramework(Framework)
                 .SetProjectFile(Solution)
                 .SetConfiguration(Configuration)
                 .SetAssemblyVersion(GitVersion.AssemblySemVer)
@@ -93,9 +93,9 @@ class Build : NukeBuild
         .Executes(() =>
         {
             DotNetTest(settings => settings
-                .SetFramework(Framework)
                 .SetProjectFile(Solution)
                 .SetConfiguration(Configuration)
+                .SetFramework(Framework)
                 .SetDataCollector("XPlat Code Coverage")
             );
         });

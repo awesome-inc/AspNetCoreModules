@@ -6,7 +6,7 @@ on:
     tags: ['*']
     paths-ignore:
       - _docs
-      - "**/*.md"
+      - '**/*.md'
   pull_request:
     branches: [main]
 
@@ -27,13 +27,13 @@ jobs:
       # Setup all needed dotnet sdks, cf.:
       # - https://itnext.io/how-to-support-multiple-net-sdks-in-github-actions-workflows-b988daa884e
       # - https://github.com/actions/setup-dotnet
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: |
-            3.1.x
-            5.0.x
-            6.0.x
+      # - name: Setup dotnet
+      #   uses: actions/setup-dotnet@v1
+      #   with:
+      #     dotnet-version: |
+      #       3.1.x
+      #       5.0.x
+      #       6.0.x
 
       - run: .\build.ps1 CiBuild
         env:
