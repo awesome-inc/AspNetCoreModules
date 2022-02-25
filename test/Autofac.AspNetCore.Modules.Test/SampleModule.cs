@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -25,17 +24,17 @@ public class SampleModule : AspNetCoreModule
         base.ConfigureServices(services);
     }
 
+    protected override void Load(ContainerBuilder builder)
+    {
+        if (!_settings.Enabled) return;
+        _logger.LogInformation("Configure sample...");
+        base.Load(builder);
+    }
+   
     public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         if (!_settings.Enabled) return;
         _logger.LogInformation(message: $"Configure sample app ({env.EnvironmentName})...");
         base.Configure(app, env);
-    }
-
-    protected override void Load(ContainerBuilder builder)
-    {
-        if (!_settings.Enabled) return;
-        _logger.LogInformation(message: $"Configure sample...");
-        base.Load(builder);
     }
 }

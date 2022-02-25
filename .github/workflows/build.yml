@@ -37,7 +37,7 @@ jobs:
 
       - run: .\build.ps1 CiBuild
         env:
-          SONAR_LOGIN: '${{ secrets.SONAR_LOGIN }}'
+          SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}'
           NUGET_API_KEY: '${{ secrets.NUGET_API_KEY }}'
           # Use Java 11 for Sonar Scanner, Pre-installed on windows-latest
           # cf.: https://github.com/actions/virtual-environments/blob/main/images/win/Windows2022-Readme.md#java

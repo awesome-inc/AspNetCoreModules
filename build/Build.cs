@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.CI.GitHubActions;
@@ -43,8 +42,8 @@ class Build : NukeBuild
     [Parameter("NuGet API Key")] readonly string NuGetApiKey = Environment.GetEnvironmentVariable("NUGET_API_KEY");
     [Parameter("NuGet Source")] readonly string NuGetSource = "https://www.nuget.org";
 
-    [Parameter("The SonarQube login token")]
-    readonly string SonarLogin = Environment.GetEnvironmentVariable("SONAR_LOGIN");
+    [Parameter("The SonarQube token")]
+    readonly string SonarToken = Environment.GetEnvironmentVariable("SONAR_TOKEN");
 
     [Parameter("The SonarQube server")]
     readonly string SonarServer = IsLocalBuild ? "http://localhost:9000" : "https://sonarcloud.io";
@@ -140,7 +139,7 @@ class Build : NukeBuild
                     .SetVSTestReports("**/*.trx")
                     // cf.: https://github.com/nuke-build/nuke/issues/377#issuecomment-595276623
                     .SetFramework(SonarFramework) //Framework)
-                    .SetLogin(SonarLogin) // TODO: should be secret -> SetArgument
+                    .SetLogin(SonarToken) // TODO: should be secret -> SetArgument
                     .SetServer(SonarServer)
                     .SetProcessArgumentConfigurator(args =>
                         //.SetArgumentConfigurator(args =>
@@ -149,7 +148,7 @@ class Build : NukeBuild
                         args.Add($"/d:sonar.projectBaseDir={RootDirectory}");
                         // generic coverage data, cf.: https://docs.sonarqube.org/latest/analysis/generic-test/
                         args.Add("/d:sonar.coverageReportPaths=.coverage/SonarQube.xml");
-                        if (!string.IsNullOrWhiteSpace(SonarLogin))
+                        if (!string.IsNullOrWhiteSpace(SonarToken))
                         {
                             // set organization & branch name, cf.:
                             // - https://github.com/nuke-build/nuke/issues/304#issuecomment-522250591
@@ -169,7 +168,7 @@ class Build : NukeBuild
         .Executes(() =>
         {
             SonarScannerTasks.SonarScannerEnd(settings => settings
-                    .SetLogin(SonarLogin) // TODO: should be secret -> SetArgument
+                    .SetLogin(SonarToken) // TODO: should be secret -> SetArgument
                     // cf.: https://github.com/nuke-build/nuke/issues/377#issuecomment-595276623
                     .SetFramework(SonarFramework)
             );
