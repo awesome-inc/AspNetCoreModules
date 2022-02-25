@@ -13,15 +13,16 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Blogs.First().Url)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Blogs.First().Url)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Blogs) {
+    @foreach (var item in Model.Blogs)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Url)
@@ -32,6 +33,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

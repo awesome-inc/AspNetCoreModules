@@ -27,7 +27,7 @@ public class ApiModule : AspNetCoreModule
         builder.RegisterInstance(MapperConfig.CreateMapper())
             .As<IMapper>()
             .SingleInstance();
-        
+
         builder.RegisterType<BlogService>().As<IBlogService>().SingleInstance();
     }
 }

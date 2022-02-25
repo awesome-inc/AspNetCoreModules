@@ -13,12 +13,12 @@ public class ModuleRegistrationTests
     {
         var settings = new SampleSettings { Enabled = true };
         var logger = Substitute.For<ILogger<SampleModule>>();
-        
+
         var builder = WebApplication.CreateBuilder();
         // Add AutoFac: https://stackoverflow.com/questions/69754985/adding-autofac-to-net-core-6-0-using-the-new-single-file-template
         builder.Host
             .UseServiceProviderFactory(new AutofacServiceProviderFactory());
-        
+
         // 1. Configure services 
         var hook = builder.UseModules()
             .With(b =>
@@ -29,12 +29,12 @@ public class ModuleRegistrationTests
             .Build();
         logger.ReceivedWithAnyArgs(1).LogInformation(null, null, null, null);
         logger.ClearReceivedCalls();
-        
+
         // 2. Load
         using var app = builder.Build();
         logger.ReceivedWithAnyArgs(1).LogInformation(null, null, null, null);
         logger.ClearReceivedCalls();
-        
+
         // 3. Configure
         hook.Use(app);
         logger.ReceivedWithAnyArgs(1).LogInformation(null, null, null, null);

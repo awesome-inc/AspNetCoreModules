@@ -24,7 +24,7 @@ public class BlogsController : ControllerBase
     {
         return _service.Get(id);
     }
-    
+
     [HttpPut]
     public void Create(BlogDto blog)
     {
@@ -36,19 +36,19 @@ public class BlogsController : ControllerBase
     {
         _service.Remove(id);
     }
-    
+
     [HttpGet("{id:int}/posts")]
     public IEnumerable<PostDto> GetPosts(int id)
     {
         return _service.GetPosts(id);
     }
-    
+
     [HttpGet("{blogId:int}/posts/{postId:int}")]
     public PostDto GetPost(int blogId, int postId)
     {
         return _service.GetPost(postId);
     }
-    
+
     [HttpPut("{blogId:int}/posts")]
     public void CreatePost(int blogId, PostDto post)
     {

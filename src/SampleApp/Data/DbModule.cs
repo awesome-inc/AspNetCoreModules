@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SampleApp.Data;
 
-public class DbModule: AspNetCoreModule
+public class DbModule : AspNetCoreModule
 {
     public DbModule(DbSettings settings)
     {
@@ -28,7 +28,7 @@ public class DbModule: AspNetCoreModule
                 options.UseInMemoryDatabase("apps-in-memory");
             }
         });
-        
+
 
         services.AddHealthChecks()
             // https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-6.0#database-probe
@@ -40,6 +40,8 @@ public class DbModule: AspNetCoreModule
         using var scope = app.ApplicationServices.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<AppContext>();
         if (!context.Database.IsInMemory())
+        {
             context.Database.Migrate();
+        }
     }
 }

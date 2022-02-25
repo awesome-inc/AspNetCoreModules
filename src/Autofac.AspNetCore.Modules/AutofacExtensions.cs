@@ -11,7 +11,8 @@ public static class AutofacExtensions
             .Scanning(Assembly.GetCallingAssembly());
     }
 
-    public static IModuleAppHookBuilder With<TModule>(this IModuleAppHookBuilder builder, TModule module) where TModule : IModule
+    public static IModuleAppHookBuilder With<TModule>(this IModuleAppHookBuilder builder, TModule module)
+        where TModule : IModule
     {
         return builder.With(b => b.RegisterModule(module));
     }

@@ -3,34 +3,38 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SampleApp.Api;
 
-namespace SampleApp.Pages.Blogs
+namespace SampleApp.Pages.Blogs;
+
+public class DeleteModel : PageModel
 {
-    public class DeleteModel : PageModel
+    private readonly IBlogService _service;
+
+    public DeleteModel(IBlogService service)
     {
-        private readonly IBlogService _service;
+        _service = service ?? throw new ArgumentNullException(nameof(service));
+    }
 
-        public DeleteModel(IBlogService service)
+    [BindProperty] public BlogDto Blog { get; set; }
+
+    public IActionResult OnGet(int? id)
+    {
+        if (id == null)
         {
-            _service = service ?? throw new ArgumentNullException(nameof(service));
+            return NotFound();
         }
 
-        [BindProperty]
-        public BlogDto Blog { get; set; }
+        Blog = _service.Get(id.Value);
+        return Blog == null ? NotFound() : Page();
+    }
 
-        public IActionResult OnGet(int? id)
+    public IActionResult OnPostAsync(int? id)
+    {
+        if (id == null)
         {
-            if (id == null)
-                return NotFound();
-            Blog = _service.Get(id.Value);
-            return Blog == null ? NotFound() : Page();
+            return NotFound();
         }
 
-        public IActionResult OnPostAsync(int? id)
-        {
-            if (id == null)
-                return NotFound();
-            _service.Remove(id.Value);
-            return RedirectToPage("./Index");
-        }
+        _service.Remove(id.Value);
+        return RedirectToPage("./Index");
     }
 }

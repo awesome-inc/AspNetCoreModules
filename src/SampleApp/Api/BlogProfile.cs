@@ -1,8 +1,9 @@
-﻿using SampleApp.Data;
+﻿using AutoMapper;
+using SampleApp.Data;
 
 namespace SampleApp.Api;
 
-internal class BlogProfile: AutoMapper.Profile
+internal class BlogProfile : Profile
 {
     public BlogProfile()
     {
@@ -12,4 +13,5 @@ internal class BlogProfile: AutoMapper.Profile
 }
 
 public record BlogDto(int Id, string? Url);
+
 public record PostDto(int Id, string? Title, string? Content);

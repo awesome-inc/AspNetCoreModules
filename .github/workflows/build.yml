@@ -2,13 +2,13 @@ name: build
 
 on:
   push:
-    branches: [main]
-    tags: ['*']
+    branches: [ main ]
+    tags: [ '*' ]
     paths-ignore:
       - _docs
       - '**/*.md'
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build:

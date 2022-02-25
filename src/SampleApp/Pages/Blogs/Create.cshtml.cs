@@ -3,32 +3,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SampleApp.Api;
 
-namespace SampleApp.Pages.Blogs
+namespace SampleApp.Pages.Blogs;
+
+public class CreateModel : PageModel
 {
-    public class CreateModel : PageModel
+    private readonly IBlogService _service;
+
+    public CreateModel(IBlogService service)
     {
-        private readonly IBlogService _service;
+        _service = service ?? throw new ArgumentNullException(nameof(service));
+    }
 
-        public CreateModel(IBlogService service)
-        {
-            _service = service ?? throw new ArgumentNullException(nameof(service));
-        }
+    [BindProperty] public BlogDto Blog { get; set; }
 
-        public IActionResult OnGet()
+    public IActionResult OnGet()
+    {
+        return Page();
+    }
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public IActionResult OnPost()
+    {
+        if (!ModelState.IsValid)
         {
             return Page();
         }
 
-        [BindProperty]
-        public BlogDto Blog { get; set; }
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public IActionResult OnPost()
-        {
-            if (!ModelState.IsValid)
-                return Page();
-            _service.Upsert(Blog);
-            return RedirectToPage("./Index");
-        }
+        _service.Upsert(Blog);
+        return RedirectToPage("./Index");
     }
 }

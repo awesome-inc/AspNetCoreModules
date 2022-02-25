@@ -22,10 +22,10 @@
     <PackageTags>autofac;fluent-assertions;ioc;dotnet-core</PackageTags>
     <RepositoryUrl>https://github.com/awesome-inc/Autofac.AspNetCore.Modules</RepositoryUrl>
   </PropertyGroup>
-  
+
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="Autofac" Version="6.3.0"/>
   </ItemGroup>
 
 </Project>

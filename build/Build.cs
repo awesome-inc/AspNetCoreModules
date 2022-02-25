@@ -20,21 +20,23 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 // ReSharper disable once CheckNamespace
 class Build : NukeBuild
 {
-    /// Support plugins are available for:
-    ///   - JetBrains ReSharper        https://nuke.build/resharper
-    ///   - JetBrains Rider            https://nuke.build/rider
-    ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
-    ///   - Microsoft VSCode           https://nuke.build/vscode
-    public static int Main() => Execute<Build>(x => x.Test);
-    
+    const string Framework = "net6.0"; //Solution.Projects.First().GetTargetFrameworks()?.First() ?? "net6.0";
+
+    //-------------------------------------------------------------
+    // cf.: https://github.com/nuke-build/nuke/issues/377#issuecomment-595276623
+    const string SonarFramework = "net5.0";
+
+
+    static readonly AbsolutePath SourceDirectory = RootDirectory / "src";
+    static readonly AbsolutePath TestsDirectory = RootDirectory / "tests";
+    static readonly AbsolutePath ArtifactsDirectory = RootDirectory / "artifacts";
+
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Solution] readonly Solution Solution;
     [GitVersion] readonly GitVersion GitVersion;
     [Parameter("Is CI Build")] readonly bool IsCiBuild = Host is GitHubActions;
-    const string Framework = "net6.0"; //Solution.Projects.First().GetTargetFrameworks()?.First() ?? "net6.0";
 
     [Parameter("Push built NuGet package")]
     readonly bool IsPushTag = (Environment.GetEnvironmentVariable("GITHUB_REF") ?? "-unset-").StartsWith("refs/tags/");
@@ -42,18 +44,14 @@ class Build : NukeBuild
     [Parameter("NuGet API Key")] readonly string NuGetApiKey = Environment.GetEnvironmentVariable("NUGET_API_KEY");
     [Parameter("NuGet Source")] readonly string NuGetSource = "https://www.nuget.org";
 
-    [Parameter("The SonarQube token")]
-    readonly string SonarToken = Environment.GetEnvironmentVariable("SONAR_TOKEN");
+    [Solution] readonly Solution Solution;
+
+    [Parameter("The SonarQube organization")] readonly string SonarOrganization = "awesome-inc";
 
     [Parameter("The SonarQube server")]
     readonly string SonarServer = IsLocalBuild ? "http://localhost:9000" : "https://sonarcloud.io";
 
-    [Parameter("The SonarQube organization")] readonly string SonarOrganization = "awesome-inc";
-
-
-    static readonly AbsolutePath SourceDirectory = RootDirectory / "src";
-    static readonly AbsolutePath TestsDirectory = RootDirectory / "tests";
-    static readonly AbsolutePath ArtifactsDirectory = RootDirectory / "artifacts";
+    [Parameter("The SonarQube token")] readonly string SonarToken = Environment.GetEnvironmentVariable("SONAR_TOKEN");
 
     //-------------------------------------------------------------
     Target Clean => _ => _
@@ -109,10 +107,6 @@ class Build : NukeBuild
                 .SetTargetDirectory(".coverage/")
             );
         });
-    
-    //-------------------------------------------------------------
-    // cf.: https://github.com/nuke-build/nuke/issues/377#issuecomment-595276623
-    const string SonarFramework = "net5.0";
 
     Target Sonar => _ => _
         .Description("SonarQube analysis")
@@ -131,7 +125,7 @@ class Build : NukeBuild
             {
                 var name = Solution.Name;
                 var key = $"{SonarOrganization}.{name}";
-                
+
                 return settings
                     .SetProjectKey(key)
                     .SetName(name)
@@ -155,7 +149,9 @@ class Build : NukeBuild
                             // - http://www.nuke.build/docs/authoring-builds/cli-tools.html#custom-arguments
                             args.Add($"/o:{SonarOrganization}");
                             if (GitVersion.BranchName != "main")
+                            {
                                 args.Add($"/d:sonar.branch.name={GitVersion.BranchName}");
+                            }
                         }
 
                         return args;
@@ -168,12 +164,12 @@ class Build : NukeBuild
         .Executes(() =>
         {
             SonarScannerTasks.SonarScannerEnd(settings => settings
-                    .SetLogin(SonarToken) // TODO: should be secret -> SetArgument
-                    // cf.: https://github.com/nuke-build/nuke/issues/377#issuecomment-595276623
-                    .SetFramework(SonarFramework)
+                .SetLogin(SonarToken) // TODO: should be secret -> SetArgument
+                // cf.: https://github.com/nuke-build/nuke/issues/377#issuecomment-595276623
+                .SetFramework(SonarFramework)
             );
         });
-    
+
     //-------------------------------------------------------------
     Target Package => _ =>
     {
@@ -201,13 +197,20 @@ class Build : NukeBuild
                 .SetSource(NuGetSource)
             );
         });
- 
+
     //-------------------------------------------------------------
     // ReSharper disable once UnusedMember.Local
     Target CiBuild => _ => _
         .Description("CI build target")
-        .DependsOn(IsPushTag ? new []{Sonar,Push}: new []{Test})
+        .DependsOn(IsPushTag ? new[] { Sonar, Push } : new[] { Test })
         .Executes(() =>
         {
         });
+
+    /// Support plugins are available for:
+    /// - JetBrains ReSharper        https://nuke.build/resharper
+    /// - JetBrains Rider            https://nuke.build/rider
+    /// - Microsoft VisualStudio     https://nuke.build/visualstudio
+    /// - Microsoft VSCode           https://nuke.build/vscode
+    public static int Main() => Execute<Build>(x => x.Test);
 }

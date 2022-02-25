@@ -30,9 +30,14 @@ public class BlogService : IBlogService
     {
         var blog = _mapper.Map<Blog>(dto);
         if (_context.Blogs.Find(dto.Id) != null)
+        {
             _context.Blogs.Update(blog);
+        }
         else
+        {
             _context.Blogs.Add(blog);
+        }
+
         _context.SaveChanges();
     }
 
@@ -60,9 +65,14 @@ public class BlogService : IBlogService
         var blog = _context.Blogs.Find(blogId) ?? throw new KeyNotFoundException();
         var post = _mapper.Map<Post>(dto);
         if (_context.Posts.Find(dto.Id) != null)
+        {
             _context.Posts.Update(post);
+        }
         else
+        {
             blog.Posts.Add(post);
+        }
+
         _context.SaveChanges();
     }
 

@@ -8,17 +8,22 @@ namespace Autofac.AspNetCore.Modules.Test;
 
 public class SampleModule : AspNetCoreModule
 {
-    private readonly SampleSettings _settings;
     private readonly ILogger<SampleModule> _logger;
+    private readonly SampleSettings _settings;
 
     public SampleModule(SampleSettings settings, ILogger<SampleModule> logger)
     {
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
+
     public override void ConfigureServices(IServiceCollection services)
     {
-        if (!_settings.Enabled) return;
+        if (!_settings.Enabled)
+        {
+            return;
+        }
+
         _logger.LogInformation("Configure sample services...");
         // TODO
         base.ConfigureServices(services);
@@ -26,15 +31,23 @@ public class SampleModule : AspNetCoreModule
 
     protected override void Load(ContainerBuilder builder)
     {
-        if (!_settings.Enabled) return;
+        if (!_settings.Enabled)
+        {
+            return;
+        }
+
         _logger.LogInformation("Configure sample...");
         base.Load(builder);
     }
-   
+
     public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        if (!_settings.Enabled) return;
-        _logger.LogInformation(message: $"Configure sample app ({env.EnvironmentName})...");
+        if (!_settings.Enabled)
+        {
+            return;
+        }
+
+        _logger.LogInformation($"Configure sample app ({env.EnvironmentName})...");
         base.Configure(app, env);
     }
 }

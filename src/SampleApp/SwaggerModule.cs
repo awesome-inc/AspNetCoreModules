@@ -14,7 +14,9 @@ internal class SwaggerModule : AspNetCoreModule
     public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         if (!env.IsDevelopment())
+        {
             return;
+        }
 
         app.UseSwagger();
         app.UseSwaggerUI();
