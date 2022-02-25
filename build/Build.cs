@@ -35,8 +35,7 @@ class Build : NukeBuild
     [Solution] readonly Solution Solution;
     [GitVersion] readonly GitVersion GitVersion;
     [Parameter("Is CI Build")] readonly bool IsCiBuild = Host is GitHubActions;
-    string Framework => Solution.Projects.First().GetTargetFrameworks()?.First() ?? "net6.0";
-    
+    const string Framework = "net6.0"; //Solution.Projects.First().GetTargetFrameworks()?.First() ?? "net6.0";
 
     [Parameter("Push built NuGet package")]
     readonly bool IsPushTag = (Environment.GetEnvironmentVariable("GITHUB_REF") ?? "-unset-").StartsWith("refs/tags/");
