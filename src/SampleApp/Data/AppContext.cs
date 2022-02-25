@@ -20,6 +20,4 @@ public class AppContext : DbContext
             .WithMany(b => b.Posts)
             .HasForeignKey(p => p.BlogId);
     }
-    
-    public DbSet<SampleApp.Api.BlogDto> BlogDto { get; set; }
 }

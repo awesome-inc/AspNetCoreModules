@@ -11,5 +11,5 @@ internal class BlogProfile: AutoMapper.Profile
     }
 }
 
-public record BlogDto(int Id, string Url);
-public record PostDto(int Id, string Title, string Content);
+public record BlogDto(int Id, string? Url);
+public record PostDto(int Id, string? Title, string? Content);

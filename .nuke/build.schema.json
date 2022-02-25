@@ -42,9 +42,25 @@
             "VSCode"
           ]
         },
+        "IsCiBuild": {
+          "type": "boolean",
+          "description": "Is CI Build"
+        },
+        "IsPushTag": {
+          "type": "boolean",
+          "description": "Push built NuGet package"
+        },
         "NoLogo": {
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
+        },
+        "NuGetApiKey": {
+          "type": "string",
+          "description": "NuGet API Key"
+        },
+        "NuGetSource": {
+          "type": "string",
+          "description": "NuGet Source"
         },
         "Partition": {
           "type": "string",
@@ -71,9 +87,17 @@
           "items": {
             "type": "string",
             "enum": [
+              "CiBuild",
               "Clean",
               "Compile",
-              "Restore"
+              "Coverage",
+              "Package",
+              "Push",
+              "Restore",
+              "Sonar",
+              "SonarBegin",
+              "SonarEnd",
+              "Test"
             ]
           }
         },
@@ -81,15 +105,35 @@
           "type": "string",
           "description": "Path to a solution file that is automatically loaded"
         },
+        "SonarLogin": {
+          "type": "string",
+          "description": "The SonarQube login token"
+        },
+        "SonarOrganization": {
+          "type": "string",
+          "description": "The SonarQube organization"
+        },
+        "SonarServer": {
+          "type": "string",
+          "description": "The SonarQube server"
+        },
         "Target": {
           "type": "array",
           "description": "List of targets to be invoked. Default is '{default_target}'",
           "items": {
             "type": "string",
             "enum": [
+              "CiBuild",
               "Clean",
               "Compile",
-              "Restore"
+              "Coverage",
+              "Package",
+              "Push",
+              "Restore",
+              "Sonar",
+              "SonarBegin",
+              "SonarEnd",
+              "Test"
             ]
           }
         },
