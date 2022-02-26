@@ -37,7 +37,7 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [GitVersion] readonly GitVersion GitVersion;
+    [GitVersion(Framework = Framework, NoFetch = true)] readonly GitVersion GitVersion;
     [Parameter("Is CI Build")] readonly bool IsCiBuild = Host is GitHubActions;
 
     [Parameter("Push built NuGet package")]

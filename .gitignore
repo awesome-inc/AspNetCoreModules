@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,intellij+all,dotnetcore,aspnetcore,visualstudio
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,intellij+all,dotnetcore,aspnetcore,visualstudio
+# Created by https://www.toptal.com/developers/gitignore/api/dotnetcore,aspnetcore,visualstudio,intellij+all,visualstudiocode,sonarqube
+# Edit at https://www.toptal.com/developers/gitignore?templates=dotnetcore,aspnetcore,visualstudio,intellij+all,visualstudiocode,sonarqube
 
 ### ASPNETCore ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -369,6 +369,19 @@ fabric.properties
 !.idea/codeStyles
 !.idea/runConfigurations
 
+### SonarQube ###
+# SonarQube ignore files.
+#
+# https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
+# Sonar Scanner working directories
+.sonar/
+.sonarqube/
+.scannerwork/
+
+# http://www.sonarlint.org/commandline/
+# SonarLint working directories, configuration files (including credentials)
+.sonarlint/
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -639,4 +652,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,intellij+all,dotnetcore,aspnetcore,visualstudio
+# End of https://www.toptal.com/developers/gitignore/api/dotnetcore,aspnetcore,visualstudio,intellij+all,visualstudiocode,sonarqube
