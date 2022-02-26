@@ -1,10 +1,11 @@
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Xunit;
 
-namespace Autofac.AspNetCore.Modules.Test;
+namespace AspNetCoreModules.Test;
 
 public class ModuleRegistrationTests
 {

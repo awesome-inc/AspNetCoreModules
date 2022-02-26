@@ -1,4 +1,5 @@
-﻿using Autofac.AspNetCore.Modules;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
 namespace SampleApp.Data;

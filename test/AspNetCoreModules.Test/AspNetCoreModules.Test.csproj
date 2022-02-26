@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Autofac.AspNetCore.Modules\Autofac.AspNetCore.Modules.csproj"/>
+    <ProjectReference Include="..\..\src\AspNetCoreModules\AspNetCoreModules.csproj"/>
   </ItemGroup>
 
 </Project>

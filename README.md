@@ -1,13 +1,13 @@
-# Autofac.AspNetCore.Modules
+# AspNetCoreModules
 
-[![Build status](https://github.com/awesome-inc/Autofac.AspNetCore.Modules/actions/workflows/build.yml/badge.svg)](https://github.com/awesome-inc/Autofac.AspNetCore.Modules/actions/workflows/build.yml)
+[![Build status](https://github.com/awesome-inc/AspNetCoreModules/actions/workflows/build.yml/badge.svg)](https://github.com/awesome-inc/AspNetCoreModules/actions/workflows/build.yml)
 
-[![NuGet](https://img.shields.io/nuget/v/Autofac.AspNetCore.Modules.svg?style=flat-square)](https://www.nuget.org/packages/Autofac.AspNetCore.Modules/)
-[![NuGet](https://img.shields.io/nuget/dt/Autofac.AspNetCore.Modules.svg?style=flat-square)](https://www.nuget.org/packages/Autofac.AspNetCore.Modules/)
+[![NuGet](https://img.shields.io/nuget/v/AspNetCoreModules.svg?style=flat-square)](https://www.nuget.org/packages/AspNetCoreModules/)
+[![NuGet](https://img.shields.io/nuget/dt/AspNetCoreModules.svg?style=flat-square)](https://www.nuget.org/packages/AspNetCoreModules/)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=awesome-inc.Autofac.AspNetCore.Modules&metric=alert_status)](https://sonarcloud.io/dashboard?id=awesome-inc.Autofac.AspNetCore.Modules)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=awesome-inc.Autofac.AspNetCore.Modules&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=awesome-inc.Autofac.AspNetCore.Modules)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=awesome-inc.Autofac.AspNetCore.Modules=coverage)](https://sonarcloud.io/summary/new_code?id=awesome-inc.Autofac.AspNetCore.Modules)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=awesome-inc.AspNetCoreModules&metric=alert_status)](https://sonarcloud.io/dashboard?id=awesome-inc.AspNetCoreModules)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=awesome-inc.AspNetCoreModules&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=awesome-inc.AspNetCoreModules)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=awesome-inc.AspNetCoreModules=coverage)](https://sonarcloud.io/summary/new_code?id=awesome-inc.AspNetCoreModules)
 
 This repository contains [ASP.NET Core](https://github.com/dotnet/aspnetcore) Module extensions
 for [Autofac](https://autofac.org/). It is maintained by [@mkoertgen](https://github.com/mkoertgen).
@@ -20,7 +20,7 @@ TODO...
 
 ### Usage
 
-Install the NuGet package [FluentAssertions.Autofac](https://www.nuget.org/packages/Autofac.AspNetCore.Modules/) and start add Autofac modules.
+Install the NuGet package [AspNetCoreModules](https://www.nuget.org/packages/AspNetCoreModules/) and start add Autofac modules.
 
 ```csharp
 ...

@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6998BE90-088
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp", "src\SampleApp\SampleApp.csproj", "{8215A977-3723-4EF7-ABD9-862ACA59E8C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autofac.AspNetCore.Modules", "src\Autofac.AspNetCore.Modules\Autofac.AspNetCore.Modules.csproj", "{FD7D8F26-FD44-4A5E-9676-DF30CB0E0273}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreModules", "src\AspNetCoreModules\AspNetCoreModules.csproj", "{FD7D8F26-FD44-4A5E-9676-DF30CB0E0273}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{50613031-BC5B-44EF-93FA-76151357A20E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autofac.AspNetCore.Modules.Test", "test\Autofac.AspNetCore.Modules.Test\Autofac.AspNetCore.Modules.Test.csproj", "{E4BB13B9-0B27-4E97-8390-12E3178BE7CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreModules.Test", "test\AspNetCoreModules.Test\AspNetCoreModules.Test.csproj", "{E4BB13B9-0B27-4E97-8390-12E3178BE7CF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{96EB63F1-4F2C-46D2-B827-8F41525F3330}"
 EndProject

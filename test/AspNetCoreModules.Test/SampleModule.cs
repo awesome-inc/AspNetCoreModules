@@ -1,10 +1,12 @@
 ﻿using System;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Autofac.AspNetCore.Modules.Test;
+namespace AspNetCoreModules.Test;
 
 public class SampleModule : AspNetCoreModule
 {

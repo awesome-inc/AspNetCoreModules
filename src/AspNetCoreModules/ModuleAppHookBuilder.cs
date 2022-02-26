@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Autofac.AspNetCore.Modules;
+namespace Autofac.Extensions.DependencyInjection;
 
 internal class ModuleAppHookBuilder : IModuleAppHookBuilder
 {

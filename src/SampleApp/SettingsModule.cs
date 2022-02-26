@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Autofac.AspNetCore.Modules;
+using Autofac.Extensions.DependencyInjection;
 
 namespace SampleApp;
 

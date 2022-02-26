@@ -1,4 +1,4 @@
-﻿namespace Autofac.AspNetCore.Modules.Test;
+﻿namespace AspNetCoreModules.Test;
 
 public class SampleSettings
 {

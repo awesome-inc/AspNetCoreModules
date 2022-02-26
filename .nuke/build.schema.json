@@ -105,10 +105,6 @@
           "type": "string",
           "description": "Path to a solution file that is automatically loaded"
         },
-        "SonarLogin": {
-          "type": "string",
-          "description": "The SonarQube login token"
-        },
         "SonarOrganization": {
           "type": "string",
           "description": "The SonarQube organization"
@@ -116,6 +112,10 @@
         "SonarServer": {
           "type": "string",
           "description": "The SonarQube server"
+        },
+        "SonarToken": {
+          "type": "string",
+          "description": "The SonarQube token"
         },
         "Target": {
           "type": "array",

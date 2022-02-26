@@ -1,6 +1,6 @@
 ﻿using Autofac.Core;
 
-namespace Autofac.AspNetCore.Modules;
+namespace Autofac.Extensions.DependencyInjection;
 
 public interface IAspNetCoreModule : IModule
 {

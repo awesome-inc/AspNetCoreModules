@@ -1,4 +1,4 @@
-using Autofac.AspNetCore.Modules;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using SampleApp;
 

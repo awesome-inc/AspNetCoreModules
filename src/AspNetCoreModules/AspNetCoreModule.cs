@@ -1,4 +1,4 @@
-﻿namespace Autofac.AspNetCore.Modules;
+﻿namespace Autofac.Extensions.DependencyInjection;
 
 public abstract class AspNetCoreModule : Module, IAspNetCoreModule
 {

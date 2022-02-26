@@ -6,12 +6,13 @@
     <Nullable>enable</Nullable>
     <OutputType>Library</OutputType>
     <IsPackable>true</IsPackable>
+    <RootNamespace>Autofac.Extensions.DependencyInjection</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
     <!-- https://docs.microsoft.com/en-us/dotnet/core/tools/csproj#nuget-metadata-properties -->
     <Authors>Awesome Incremented and Contributors</Authors>
-    <Product>Autofac.AspNetCore.Modules</Product>
+    <Product>AspNetCoreModules</Product>
     <Company>Awesome Incremented</Company>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -20,7 +21,7 @@
     <Description>Autofac module extensions for ASP.NET Core</Description>
     <!-- See GitHub project tags -->
     <PackageTags>autofac;fluent-assertions;ioc;dotnet-core</PackageTags>
-    <RepositoryUrl>https://github.com/awesome-inc/Autofac.AspNetCore.Modules</RepositoryUrl>
+    <RepositoryUrl>https://github.com/awesome-inc/AspNetCoreModules</RepositoryUrl>
   </PropertyGroup>
 
 
