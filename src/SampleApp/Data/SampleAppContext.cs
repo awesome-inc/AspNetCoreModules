@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SampleApp.Data;
 
-public class AppContext : DbContext
+public class SampleAppContext : DbContext
 {
-    public AppContext(DbContextOptions<AppContext> options) : base(options)
+    public SampleAppContext(DbContextOptions<SampleAppContext> options) : base(options)
     {
     }
 

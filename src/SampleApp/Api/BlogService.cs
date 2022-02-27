@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using SampleApp.Data;
-using AppContext = SampleApp.Data.AppContext;
 
 namespace SampleApp.Api;
 
 public class BlogService : IBlogService
 {
-    private readonly AppContext _context;
+    private readonly SampleAppContext _context;
     private readonly IMapper _mapper;
 
-    public BlogService(AppContext context, IMapper mapper)
+    public BlogService(SampleAppContext context, IMapper mapper)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

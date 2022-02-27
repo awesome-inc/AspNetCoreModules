@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace AspNetCoreModules.Test;
+namespace AspNetCoreModules.Tests;
 
 public class SampleModule : AspNetCoreModule
 {

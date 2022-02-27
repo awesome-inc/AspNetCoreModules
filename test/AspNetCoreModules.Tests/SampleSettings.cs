@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreModules.Test;
+﻿namespace AspNetCoreModules.Tests;
 
 public class SampleSettings
 {

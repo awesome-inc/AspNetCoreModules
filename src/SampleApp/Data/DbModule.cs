@@ -15,7 +15,7 @@ public class DbModule : AspNetCoreModule
 
     public override void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<AppContext>(options =>
+        services.AddDbContext<SampleAppContext>(options =>
         {
             if (Settings.Enabled)
             {
@@ -33,13 +33,13 @@ public class DbModule : AspNetCoreModule
 
         services.AddHealthChecks()
             // https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-6.0#database-probe
-            .AddDbContextCheck<AppContext>("database");
+            .AddDbContextCheck<SampleAppContext>("database");
     }
 
     public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         using var scope = app.ApplicationServices.CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<AppContext>();
+        var context = scope.ServiceProvider.GetRequiredService<SampleAppContext>();
         if (!context.Database.IsInMemory())
         {
             context.Database.Migrate();

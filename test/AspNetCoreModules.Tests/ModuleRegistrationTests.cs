@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Xunit;
 
-namespace AspNetCoreModules.Test;
+namespace AspNetCoreModules.Tests;
 
 public class ModuleRegistrationTests
 {
