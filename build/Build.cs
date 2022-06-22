@@ -16,7 +16,6 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 namespace _build;
 
-[CheckBuildProjectConfigurations]
 [ShutdownDotNetAfterServerBuild]
 [UnsetVisualStudioEnvironmentVariables]
 // ReSharper disable once CheckNamespace
