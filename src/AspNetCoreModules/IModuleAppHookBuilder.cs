@@ -19,6 +19,13 @@ public interface IModuleAppHookBuilder
     IModuleAppHookBuilder With(Action<ContainerBuilder> configure);
 
     /// <summary>
+    ///     Resolve modules in an ordered fashion.
+    /// </summary>
+    /// <param name="orderSelector">The order selector to use.</param>
+    /// <returns>The <see cref="IModuleAppHookBuilder" /></returns>
+    IModuleAppHookBuilder Ordered(Func<IAspNetCoreModule, int> orderSelector);
+
+    /// <summary>
     ///     An action to be invoked on the final <see cref="IApplicationBuilder" />.
     ///     This will call `Configure()`-method of the scanned and registered modules.
     /// </summary>
