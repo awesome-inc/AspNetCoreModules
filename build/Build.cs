@@ -11,7 +11,6 @@ using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.ReportGenerator;
 using Nuke.Common.Tools.SonarScanner;
 using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 namespace _build;
@@ -21,7 +20,7 @@ namespace _build;
 // ReSharper disable once CheckNamespace
 class Build : NukeBuild
 {
-    const string Framework = "net6.0"; //Solution.Projects.First().GetTargetFrameworks()?.First() ?? "net6.0";
+    const string Framework = "net8.0"; //Solution.Projects.First().GetTargetFrameworks()?.First() ?? "net6.0";
 
     //-------------------------------------------------------------
     // cf.: https://github.com/nuke-build/nuke/issues/377#issuecomment-595276623
@@ -59,9 +58,9 @@ class Build : NukeBuild
         .Before(Restore)
         .Executes(() =>
         {
-            SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
-            TestsDirectory.GlobDirectories("**/bin", "**/obj", "**/TestResults").ForEach(DeleteDirectory);
-            EnsureCleanDirectory(ArtifactsDirectory);
+            SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(x => x.DeleteDirectory());
+            TestsDirectory.GlobDirectories("**/bin", "**/obj", "**/TestResults").ForEach(x => x.DeleteDirectory());
+            ArtifactsDirectory.CreateOrCleanDirectory();
         });
 
     Target Restore => _ => _
